@@ -1,5 +1,5 @@
-import Hero from "@/src/components/Hero";
-import FloorSection from "@/src/components/FloorSection";
+import Hero from "@/components/Hero";
+import FloorSection from "@/components/FloorSection";
 import styles from "./page.module.css";
 
 export default function Home() {

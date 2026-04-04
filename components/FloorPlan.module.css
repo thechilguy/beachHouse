@@ -1,0 +1,14 @@
+.planWrapper {
+  position: relative;
+  width: 100%;
+  padding: 24px;
+}
+
+.svg {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  width: calc(100% - 48px);
+  height: calc(100% - 48px);
+  pointer-events: none;
+}
