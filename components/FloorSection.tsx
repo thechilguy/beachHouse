@@ -1,52 +1,55 @@
-'use client'
+"use client";
 
-import { useState } from 'react'
-import FloorPlan from './FloorPlan'
-import styles from './FloorSection.module.css'
+import { useState, useEffect, useRef } from "react";
+import FloorPlan from "./FloorPlan";
+import styles from "./FloorSection.module.css";
 
 const ROOMS = [
-  { id: 'living',  label: 'Living Room',    size: '32 m²', color: 'rgba(176,80,80,0.35)' },
-  { id: 'bedroom', label: 'Master Bedroom', size: '28 m²', color: 'rgba(74,154,48,0.35)' },
-  { id: 'kitchen', label: 'Kitchen',        size: '18 m²', color: 'rgba(42,138,170,0.35)' },
-  { id: 'room2',   label: 'Garage',         size: '24 m²', color: 'rgba(74,74,170,0.35)' },
-] as const
+  { id: "living",   label: "Living Room",    size: "32 m²", color: "rgba(176,80,80,0.35)"  },
+  { id: "bedroom",  label: "Master Bedroom", size: "28 m²", color: "rgba(74,154,48,0.35)"  },
+  { id: "kitchen",  label: "Kitchen",        size: "18 m²", color: "rgba(42,138,170,0.35)" },
+  { id: "room2",    label: "Bathroom",       size: "24 m²", color: "rgba(74,74,170,0.35)"  },
+] as const;
 
-type RoomId = typeof ROOMS[number]['id']
+type RoomId = (typeof ROOMS)[number]["id"];
 
 export default function FloorSection() {
-  const [active, setActive] = useState<Set<RoomId>>(new Set())
+  const [active, setActive] = useState<Set<RoomId>>(new Set());
+  const bodyRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = bodyRef.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) { el.classList.add(styles.visible); obs.disconnect(); } },
+      { threshold: 0.1 }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
 
   function toggle(id: RoomId) {
-    setActive(prev => {
-      const next = new Set(prev)
-      next.has(id) ? next.delete(id) : next.add(id)
-      return next
-    })
+    setActive((prev) => {
+      const next = new Set(prev);
+      next.has(id) ? next.delete(id) : next.add(id);
+      return next;
+    });
   }
 
   return (
     <section className={styles.section}>
+      <div className={styles.titleRow}>
+        <h2 className={styles.floorTitle}>First Floor</h2>
+      </div>
 
-      {/* ── Left Column ── */}
-      <div className={styles.colLeft}>
+      <div ref={bodyRef} className={styles.body}>
+        <div className={styles.colLeft}>
+          <div className={styles.overview}>
+            <p className={styles.overviewLabel}>Floor overview</p>
+            <p className={styles.overviewMain}>First Floor — <strong>160 m²</strong></p>
+            <p className={styles.overviewSub}>Open-plan living · 4 rooms · 2 bathrooms</p>
+          </div>
 
-        {/* Header */}
-        <div className={styles.headerRow}>
-          <h2 className={styles.floorTitle}>First Floor</h2>
-          <span className={styles.arrow}>↓</span>
-        </div>
-
-        {/* Overview */}
-        <div className={styles.overview}>
-          <p className={styles.overviewLabel}>Floor overview</p>
-          <p className={styles.overviewMain}>First Floor — <strong>160 m²</strong></p>
-          <p className={styles.overviewSub}>Open-plan living · 4 rooms · 2 bathrooms</p>
-        </div>
-
-        {/* Content Row */}
-        <div className={styles.contentRow}>
-
-          {/* Description + Specs */}
           <div className={styles.descBlock}>
             <p className={styles.descText}>
               The first floor is designed around natural light and open flow.
@@ -69,16 +72,12 @@ export default function FloorSection() {
             </div>
           </div>
 
-          {/* Rooms Grid */}
           <div className={styles.roomsGrid}>
-            {ROOMS.map(r => (
+            {ROOMS.map((r) => (
               <div
                 key={r.id}
                 className={styles.roomCard}
-                style={active.has(r.id)
-                  ? { background: r.color, borderColor: 'transparent', cursor: 'pointer' }
-                  : { cursor: 'pointer' }
-                }
+                style={active.has(r.id) ? { background: r.color, borderColor: "transparent", cursor: "pointer" } : { cursor: "pointer" }}
                 onClick={() => toggle(r.id)}
               >
                 <p className={styles.roomName}>{r.label}</p>
@@ -86,15 +85,12 @@ export default function FloorSection() {
               </div>
             ))}
           </div>
+        </div>
 
+        <div className={styles.colRight}>
+          <FloorPlan active={active} />
         </div>
       </div>
-
-      {/* ── Right Column — Floor Plan ── */}
-      <div className={styles.colRight}>
-        <FloorPlan active={active} />
-      </div>
-
     </section>
-  )
+  );
 }

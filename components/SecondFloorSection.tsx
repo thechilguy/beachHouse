@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import SecondFloorPlan from "./SecondFloorPlan";
 import styles from "./FloorSection.module.css";
 
@@ -17,6 +17,18 @@ type RoomId = (typeof ROOMS)[number]["id"];
 
 export default function SecondFloorSection() {
   const [active, setActive] = useState<Set<RoomId>>(new Set());
+  const bodyRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = bodyRef.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) { el.classList.add(styles.visible); obs.disconnect(); } },
+      { threshold: 0.1 }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
 
   function toggle(id: RoomId) {
     setActive((prev) => {
@@ -28,24 +40,16 @@ export default function SecondFloorSection() {
 
   return (
     <section className={styles.section}>
-      {/* ── Sticky full-width title ── */}
       <div className={styles.titleRow}>
         <h2 className={styles.floorTitle}>Second Floor</h2>
-        <span className={styles.arrow}>↓</span>
       </div>
 
-      {/* ── Content ── */}
-      <div className={styles.body}>
-        {/* Left */}
+      <div ref={bodyRef} className={styles.body}>
         <div className={styles.colLeft}>
           <div className={styles.overview}>
             <p className={styles.overviewLabel}>Floor overview</p>
-            <p className={styles.overviewMain}>
-              Second Floor — <strong>140 m²</strong>
-            </p>
-            <p className={styles.overviewSub}>
-              Private sleeping wing · 3 bedrooms · 2 bathrooms · terrace
-            </p>
+            <p className={styles.overviewMain}>Second Floor — <strong>140 m²</strong></p>
+            <p className={styles.overviewSub}>Private sleeping wing · 3 bedrooms · 2 bathrooms · terrace</p>
           </div>
 
           <div className={styles.descBlock}>
@@ -76,15 +80,7 @@ export default function SecondFloorSection() {
               <div
                 key={r.id}
                 className={styles.roomCard}
-                style={
-                  active.has(r.id)
-                    ? {
-                        background: r.color,
-                        borderColor: "transparent",
-                        cursor: "pointer",
-                      }
-                    : { cursor: "pointer" }
-                }
+                style={active.has(r.id) ? { background: r.color, borderColor: "transparent", cursor: "pointer" } : { cursor: "pointer" }}
                 onClick={() => toggle(r.id)}
               >
                 <p className={styles.roomName}>{r.label}</p>
@@ -94,7 +90,6 @@ export default function SecondFloorSection() {
           </div>
         </div>
 
-        {/* Right — Floor Plan */}
         <div className={styles.colRight}>
           <SecondFloorPlan active={active} />
         </div>
