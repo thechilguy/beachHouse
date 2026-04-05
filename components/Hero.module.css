@@ -17,7 +17,6 @@
   grid-column: 1 / -1;
   height: 100vh;
   position: relative;
-  background-image: url("/image/bg.png");
   background-size: cover;
   background-position: center;
   margin-left: -20px;
@@ -101,7 +100,6 @@
 .cardBlur {
   position: absolute;
   inset: -30px;
-  background-image: url("/image/bg.png");
   background-size: cover;
   background-attachment: fixed;
   filter: blur(5px);
@@ -242,7 +240,7 @@
 /* ── Mobile (≤480px) ── */
 @media (max-width: 480px) {
   .hero {
-    background-image: url("/image/mob.png");
+    /* background handled via inline style in component */
   }
 
   .title h1 {
@@ -257,9 +255,4 @@
   }
 }
 
-/* ── Desktop (≥1200px) ── */
-@media (min-width: 1200px) {
-  .hero {
-    background-image: url("/image/bg.png");
-  }
-}
+/* background handled via inline style in component */

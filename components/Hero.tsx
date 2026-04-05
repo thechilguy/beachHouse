@@ -1,8 +1,13 @@
 import styles from './Hero.module.css'
 
+const base = process.env.NEXT_PUBLIC_BASE_PATH ?? ''
+
 export default function Hero() {
   return (
-    <section className={styles.hero}>
+    <section
+      className={styles.hero}
+      style={{ backgroundImage: `url(${base}/image/bg.png)` }}
+    >
       <div className={styles.title}>
         <h1>
           Beach
@@ -15,7 +20,10 @@ export default function Hero() {
       <div className={styles.badge}>RESIDENTIAL</div>
 
       <div className={styles.card}>
-        <div className={styles.cardBlur} />
+        <div
+          className={styles.cardBlur}
+          style={{ backgroundImage: `url(${base}/image/bg.png)` }}
+        />
         <div className={styles.cardInner}>
           <p className={styles.cardLabel}>Location</p>
           <h2 className={styles.cardLocation}>Mediterranean Coastline</h2>
