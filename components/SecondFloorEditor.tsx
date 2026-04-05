@@ -86,7 +86,7 @@ export default function SecondFloorEditor() {
           style={{ position: 'relative', width: '100%', cursor: done ? 'default' : 'crosshair', userSelect: 'none' }}
         >
           <Image
-            src="/image/secondFloor.png"
+            src="/image/secondFloor__.png"
             alt="Second Floor Plan"
             width={1486}
             height={1492}

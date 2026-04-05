@@ -7,9 +7,9 @@ const base = process.env.NEXT_PUBLIC_BASE_PATH ?? ''
 
 function getBgImage() {
   const w = window.innerWidth
-  if (w <= 768) return `url(${base}/image/bg-2.png)`
-  if (w <= 1199) return `url(${base}/image/bg-3.png)`
-  return `url(${base}/image/bg.png)`
+  if (w <= 768) return `url(${base}/image/bg-2__.png)`
+  if (w <= 1199) return `url(${base}/image/bg-3__.png)`
+  return `url(${base}/image/bg__.png)`
 }
 
 export default function Hero() {
@@ -29,7 +29,7 @@ export default function Hero() {
     <section
       ref={sectionRef}
       className={styles.hero}
-      style={{ backgroundImage: `url(${base}/image/bg.png)` }}
+      style={{ backgroundImage: `url(${base}/image/bg__.png)` }}
     >
       <div className={styles.title}>
         <h1>

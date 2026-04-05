@@ -2,7 +2,7 @@
   grid-column: 1 / -1;
   height: 100vh;
   position: relative;
-  background-image: url("/image/bg.png");
+  background-image: url("/image/bg__.png");
   background-size: cover;
   background-position: center;
 }
@@ -80,7 +80,7 @@
 .cardBlur {
   position: absolute;
   inset: -30px;
-  background-image: url("/image/bg.png");
+  background-image: url("/image/bg__.png");
   background-size: cover;
   background-attachment: fixed;
   filter: blur(5px);

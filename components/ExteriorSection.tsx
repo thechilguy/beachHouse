@@ -30,7 +30,7 @@ export default function ExteriorSection() {
   return (
     <section className={styles.section}>
       <Image
-        src={`${base}/image/blured.png`}
+        src={`${base}/image/blured__.png`}
         alt="Exterior view"
         fill
         className={styles.image}

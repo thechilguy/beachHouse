@@ -24,7 +24,7 @@ export default function SecondFloorPlan({ active }: SecondFloorPlanProps) {
   return (
     <div className={styles.planWrapper}>
       <Image
-        src={`${base}/image/secondFloor.png`}
+        src={`${base}/image/secondFloor__.png`}
         alt="Second Floor Plan"
         width={1486}
         height={1492}
