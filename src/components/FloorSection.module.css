@@ -200,8 +200,12 @@
 }
 
 @keyframes rotateCube {
-  from { transform: rotateX(-25deg) rotateY(0deg); }
-  to   { transform: rotateX(-25deg) rotateY(360deg); }
+  from {
+    transform: rotateX(-25deg) rotateY(0deg);
+  }
+  to {
+    transform: rotateX(-25deg) rotateY(360deg);
+  }
 }
 
 .face {
@@ -210,12 +214,30 @@
   height: 120px;
 }
 
-.faceFront  { background: #c8b49a; transform: translateZ(60px); }
-.faceBack   { background: #b8a48a; transform: rotateY(180deg) translateZ(60px); }
-.faceLeft   { background: #d4c4aa; transform: rotateY(-90deg) translateZ(60px); }
-.faceRight  { background: #a89478; transform: rotateY(90deg) translateZ(60px); }
-.faceTop    { background: #e0d0b8; transform: rotateX(90deg) translateZ(60px); }
-.faceBottom { background: #987860; transform: rotateX(-90deg) translateZ(60px); }
+.faceFront {
+  background: #c8b49a;
+  transform: translateZ(60px);
+}
+.faceBack {
+  background: #b8a48a;
+  transform: rotateY(180deg) translateZ(60px);
+}
+.faceLeft {
+  background: #d4c4aa;
+  transform: rotateY(-90deg) translateZ(60px);
+}
+.faceRight {
+  background: #a89478;
+  transform: rotateY(90deg) translateZ(60px);
+}
+.faceTop {
+  background: #e0d0b8;
+  transform: rotateX(90deg) translateZ(60px);
+}
+.faceBottom {
+  background: #987860;
+  transform: rotateX(-90deg) translateZ(60px);
+}
 
 .cubeLabel {
   font-family: var(--font-geist-sans);
