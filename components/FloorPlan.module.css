@@ -1,14 +1,19 @@
 .planWrapper {
   position: relative;
-  width: 100%;
-  padding: 24px;
+  width: clamp(380px, 65vw, 950px);
+}
+
+@media (max-width: 400px) {
+  .planWrapper {
+    width: 100%;
+  }
 }
 
 .svg {
   position: absolute;
-  top: 24px;
-  left: 24px;
-  width: calc(100% - 48px);
-  height: calc(100% - 48px);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   pointer-events: none;
 }

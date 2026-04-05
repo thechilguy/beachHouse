@@ -1,46 +1,37 @@
-/* ── Section grid ── */
+/* ── Section ── */
 .section {
   grid-column: 1 / -1;
   margin-left: -20px;
   margin-right: -20px;
-
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
-  padding: 80px 20px;
-  min-height: 100vh;
-
   background: #ffffff;
-}
-
-/* ── Columns ── */
-.colLeft {
-  grid-column: 1 / 3;
-}
-
-.colRight {
-  grid-column: 3 / 5;
-  min-height: 500px;
-  align-self: stretch;
+  overflow: clip;
   position: relative;
 }
 
-/* ── Header Row ── */
-.headerRow {
+.section + .section .titleRow {
+  z-index: 11;
+}
+
+/* ── Sticky title row ── */
+.titleRow {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: #ffffff;
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
+  padding: 40px 48px 20px;
   border-bottom: 1px solid #e0e0e0;
-  padding-bottom: 16px;
-  margin-bottom: 24px;
 }
 
 .floorTitle {
   font-family: var(--font-geist-sans);
   font-weight: 700;
-  font-size: 48px;
+  font-size: clamp(48px, 6vw, 96px);
   color: #1a1a1a;
   margin: 0;
+  line-height: 1;
 }
 
 .arrow {
@@ -51,11 +42,53 @@
   line-height: 1;
 }
 
+/* ── Body — slides out below title ── */
+.body {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 0;
+  min-height: 100vh;
+
+  animation: slideUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(60px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ── Left column ── */
+.colLeft {
+  padding: 48px 48px 64px;
+  border-right: 1px solid #e0e0e0;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+/* ── Right column ── */
+.colRight {
+  position: sticky;
+  top: 89px;
+  align-self: start;
+  height: calc(100vh - 89px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  box-sizing: border-box;
+}
+
 /* ── Overview ── */
 .overview {
   border-bottom: 1px solid #e0e0e0;
-  padding-bottom: 20px;
-  margin-bottom: 32px;
+  padding-bottom: 24px;
 }
 
 .overviewLabel {
@@ -82,17 +115,8 @@
   margin: 0;
 }
 
-/* ── Content Row ── */
-.contentRow {
-  display: flex;
-  gap: 32px;
-  align-items: flex-start;
-}
-
 /* ── Description block ── */
-.descBlock {
-  flex: 1;
-}
+.descBlock {}
 
 .descText {
   font-family: var(--font-geist-sans);
@@ -101,12 +125,11 @@
   color: #444;
   line-height: 1.7;
   margin: 0 0 24px;
-  max-width: 380px;
 }
 
 .specs {
   display: flex;
-  gap: 24px;
+  gap: 32px;
 }
 
 .spec {
@@ -134,8 +157,6 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 8px;
-  width: 320px;
-  flex-shrink: 0;
 }
 
 .roomCard {
@@ -143,11 +164,7 @@
   border: 1px solid #e8e8e8;
   border-radius: 10px;
   padding: 16px 20px;
-}
-
-.roomCardGreen {
-  background: #d4e8c2;
-  border: none;
+  transition: background 0.25s, border-color 0.25s;
 }
 
 .roomName {
@@ -166,24 +183,25 @@
   margin: 0;
 }
 
-
 /* ── Mobile ── */
 @media (max-width: 768px) {
+  .titleRow {
+    padding: 24px 20px 16px;
+  }
+
+  .body {
+    grid-template-columns: 1fr;
+  }
+
   .colLeft {
-    grid-column: 1 / -1;
+    padding: 32px 20px 40px;
+    border-right: none;
+    border-bottom: 1px solid #e0e0e0;
   }
 
   .colRight {
-    grid-column: 1 / -1;
-    min-height: 300px;
-  }
-
-  .contentRow {
-    flex-direction: column;
-  }
-
-  .roomsGrid {
-    width: 100%;
-    grid-template-columns: 1fr 1fr;
+    position: static;
+    height: auto;
+    min-height: 400px;
   }
 }
