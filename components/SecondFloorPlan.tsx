@@ -3,6 +3,8 @@
 import Image from 'next/image'
 import styles from './SecondFloorPlan.module.css'
 
+const base = process.env.NEXT_PUBLIC_BASE_PATH ?? ''
+
 const ROOMS = [
   { id: 'living',   color: 'hsla(200,70%,50%,0.4)',  points: '254,147 970,151 970,742 256,742' },
   { id: 'master',   color: 'hsla(120,60%,40%,0.4)',  points: '991,577 1611,585 1613,1234 994,1249' },
@@ -22,7 +24,7 @@ export default function SecondFloorPlan({ active }: SecondFloorPlanProps) {
   return (
     <div className={styles.planWrapper}>
       <Image
-        src="/image/secondFloor.png"
+        src={`${base}/image/secondFloor.png`}
         alt="Second Floor Plan"
         width={1486}
         height={1492}

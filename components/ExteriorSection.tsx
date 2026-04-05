@@ -4,6 +4,8 @@ import { useEffect, useRef } from "react";
 import Image from "next/image";
 import styles from "./ExteriorSection.module.css";
 
+const base = process.env.NEXT_PUBLIC_BASE_PATH ?? ''
+
 export default function ExteriorSection() {
   const gradientRef = useRef<HTMLDivElement>(null);
 
@@ -28,7 +30,7 @@ export default function ExteriorSection() {
   return (
     <section className={styles.section}>
       <Image
-        src="/image/blured.png"
+        src={`${base}/image/blured.png`}
         alt="Exterior view"
         fill
         className={styles.image}

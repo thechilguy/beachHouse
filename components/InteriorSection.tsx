@@ -4,21 +4,23 @@ import { useEffect, useRef } from "react";
 import Image from "next/image";
 import styles from "./InteriorSection.module.css";
 
+const base = process.env.NEXT_PUBLIC_BASE_PATH ?? ''
+
 const SLIDES = [
   {
-    image: "/image/interier1.png",
+    image: `${base}/image/interier1.png`,
     reverse: false,
     title: "The space between walls and sky",
     desc: "A terrace that dissolves into the horizon. Morning light, sea wind, and the kind of stillness that only stone and silence can hold.\nThis is not a house. This is a feeling.",
   },
   {
-    image: "/image/interier2.png",
+    image: `${base}/image/interier2.png`,
     reverse: true,
     title: "Warm light. Raw wood. Open sky.",
     desc: "Inside, every surface tells a story — polished concrete underfoot, solid timber overhead, and through the open frame, the desert slowly becomes the sea.\nA room that knows when to be quiet.",
   },
   {
-    image: "/image/interier3.png",
+    image: `${base}/image/interier3.png`,
     reverse: false,
     title: "Terracotta walls. Stone floors. Art that breathes.",
     desc: "A living room built around one idea — that beauty should feel effortless. Textured plaster catches the last light of day while the landscape outside does the rest.\nNothing excess. Nothing missing.",

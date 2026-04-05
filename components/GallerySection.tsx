@@ -4,6 +4,8 @@ import { useEffect, useRef } from "react";
 import Image from "next/image";
 import styles from "./GallerySection.module.css";
 
+const base = process.env.NEXT_PUBLIC_BASE_PATH ?? ''
+
 export default function GallerySection() {
   const gridRef = useRef<HTMLDivElement>(null);
   const textRef = useRef<HTMLDivElement>(null);
@@ -39,17 +41,17 @@ export default function GallerySection() {
 
         {/* Top-left */}
         <div className={styles.imgTopLeft}>
-          <Image src="/image/exterier1.png" alt="Exterior view 1" fill className={styles.img} />
+          <Image src={`${base}/image/exterier1.png`} alt="Exterior view 1" fill className={styles.img} />
         </div>
 
         {/* Top-right */}
         <div className={styles.imgTopRight}>
-          <Image src="/image/exterier2.png" alt="Exterior view 2" fill className={styles.img} />
+          <Image src={`${base}/image/exterier2.png`} alt="Exterior view 2" fill className={styles.img} />
         </div>
 
         {/* Bottom-left */}
         <div className={styles.imgBottomLeft}>
-          <Image src="/image/exterier3.png" alt="Exterior view 3" fill className={styles.img} />
+          <Image src={`${base}/image/exterier3.png`} alt="Exterior view 3" fill className={styles.img} />
         </div>
 
         {/* Bottom-right: text */}

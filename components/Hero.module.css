@@ -214,10 +214,6 @@
 
 /* ── Tablet portrait / large mobile (481–768px) ── */
 @media (max-width: 768px) {
-  .hero {
-    background-image: url("/image/bg-2.png");
-  }
-
   .title h1 {
     font-size: 64px;
   }
@@ -248,11 +244,6 @@
   }
 }
 
-/* ── Tablet landscape (769–1199px) ── */
-@media (min-width: 769px) and (max-width: 1199px) {
-  .hero {
-    background-image: url("/image/bg-3.png");
-  }
-}
+/* background handled via inline style in component */
 
 /* background handled via inline style in component */

@@ -3,6 +3,8 @@
 import Image from 'next/image'
 import styles from './FloorPlan.module.css'
 
+const base = process.env.NEXT_PUBLIC_BASE_PATH ?? ''
+
 const ROOMS = [
   { id: 'kitchen', color: 'rgba(42,138,170,0.45)',  points: '41,422 1092,423 1103,1251 42,1255' },
   { id: 'living',  color: 'rgba(176,80,80,0.45)',   points: '1108,424 1115,1244 1954,1266 1954,428' },
@@ -20,7 +22,7 @@ export default function FloorPlan({ active }: FloorPlanProps) {
   return (
     <div className={styles.planWrapper}>
       <Image
-        src="/image/plan-1_floor.png"
+        src={`${base}/image/plan-1_floor.png`}
         alt="Floor Plan"
         width={1486}
         height={1492}

@@ -1,10 +1,35 @@
+'use client'
+
+import { useEffect, useRef } from 'react'
 import styles from './Hero.module.css'
 
 const base = process.env.NEXT_PUBLIC_BASE_PATH ?? ''
 
+function getBgImage() {
+  const w = window.innerWidth
+  if (w <= 768) return `url(${base}/image/bg-2.png)`
+  if (w <= 1199) return `url(${base}/image/bg-3.png)`
+  return `url(${base}/image/bg.png)`
+}
+
 export default function Hero() {
+  const sectionRef = useRef<HTMLElement>(null)
+  const blurRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    function updateBg() {
+      const img = getBgImage()
+      if (sectionRef.current) sectionRef.current.style.backgroundImage = img
+      if (blurRef.current) blurRef.current.style.backgroundImage = img
+    }
+    updateBg()
+    window.addEventListener('resize', updateBg)
+    return () => window.removeEventListener('resize', updateBg)
+  }, [])
+
   return (
     <section
+      ref={sectionRef}
       className={styles.hero}
       style={{ backgroundImage: `url(${base}/image/bg.png)` }}
     >
@@ -21,6 +46,7 @@ export default function Hero() {
 
       <div className={styles.card}>
         <div
+          ref={blurRef}
           className={styles.cardBlur}
           style={{ backgroundImage: `url(${base}/image/bg.png)` }}
         />
