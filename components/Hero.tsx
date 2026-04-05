@@ -14,13 +14,11 @@ function getBgImage() {
 
 export default function Hero() {
   const sectionRef = useRef<HTMLElement>(null)
-  const blurRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     function updateBg() {
       const img = getBgImage()
       if (sectionRef.current) sectionRef.current.style.backgroundImage = img
-      if (blurRef.current) blurRef.current.style.backgroundImage = img
     }
     updateBg()
     window.addEventListener('resize', updateBg)
@@ -45,11 +43,6 @@ export default function Hero() {
       <div className={styles.badge}>RESIDENTIAL</div>
 
       <div className={styles.card}>
-        <div
-          ref={blurRef}
-          className={styles.cardBlur}
-          style={{ backgroundImage: `url(${base}/image/bg.png)` }}
-        />
         <div className={styles.cardInner}>
           <p className={styles.cardLabel}>Location</p>
           <h2 className={styles.cardLocation}>Mediterranean Coastline</h2>
