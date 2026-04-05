@@ -41,17 +41,17 @@ export default function GallerySection() {
 
         {/* Top-left */}
         <div className={styles.imgTopLeft}>
-          <Image src={`${base}/image/exterier1.png`} alt="Exterior view 1" fill className={styles.img} />
+          <Image src={`${base}/image/exterior__1.png`} alt="Exterior view 1" fill className={styles.img} />
         </div>
 
         {/* Top-right */}
         <div className={styles.imgTopRight}>
-          <Image src={`${base}/image/exterior2.png`} alt="Exterior view 2" fill className={styles.img} />
+          <Image src={`${base}/image/exterior__2.png`} alt="Exterior view 2" fill className={styles.img} />
         </div>
 
         {/* Bottom-left */}
         <div className={styles.imgBottomLeft}>
-          <Image src={`${base}/image/exterior3.png`} alt="Exterior view 3" fill className={styles.img} />
+          <Image src={`${base}/image/exterior__3.png`} alt="Exterior view 3" fill className={styles.img} />
         </div>
 
         {/* Bottom-right: text */}
