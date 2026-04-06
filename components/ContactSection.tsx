@@ -24,11 +24,6 @@ export default function ContactSection() {
             Leave your details and we'll get back to you within 24 hours to
             discuss the property, arrange a viewing, or answer any questions.
           </p>
-          <div className={styles.contacts}>
-            <span className={styles.contactItem}>hello@villanova.com</span>
-            <span className={styles.contactItem}>+39 055 000 0000</span>
-            <span className={styles.contactItem}>Tuscany, Italy</span>
-          </div>
         </div>
 
         {/* ── Right: form ── */}
@@ -78,14 +73,6 @@ export default function ContactSection() {
                     placeholder="+1 000 000 0000"
                   />
                 </div>
-              </div>
-
-              <div className={`${styles.field} ${styles.full}`}>
-                <label className={styles.fieldLabel}>Message</label>
-                <textarea
-                  className={styles.textarea}
-                  placeholder="Tell us what you're looking for..."
-                />
               </div>
 
               <button type="submit" className={styles.submit}>
