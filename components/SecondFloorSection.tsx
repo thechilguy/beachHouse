@@ -16,7 +16,7 @@ const ROOMS = [
 type RoomId = (typeof ROOMS)[number]["id"];
 
 export default function SecondFloorSection() {
-  const [active, setActive] = useState<Set<RoomId>>(new Set());
+  const [active, setActive] = useState<Set<RoomId>>(new Set<RoomId>(["living"]));
   const bodyRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -79,10 +79,11 @@ export default function SecondFloorSection() {
             {ROOMS.map((r) => (
               <div
                 key={r.id}
-                className={styles.roomCard}
-                style={active.has(r.id) ? { background: r.color, borderColor: "transparent", cursor: "pointer" } : { cursor: "pointer" }}
+                className={`${styles.roomCard}${active.has(r.id) ? ` ${styles.roomCardActive}` : ""}`}
+                style={active.has(r.id) ? { background: r.color, borderColor: "transparent" } : {}}
                 onClick={() => toggle(r.id)}
               >
+                <span className={styles.roomDot} style={{ background: r.color }} />
                 <p className={styles.roomName}>{r.label}</p>
                 <p className={styles.roomSize}>{r.size}</p>
               </div>
